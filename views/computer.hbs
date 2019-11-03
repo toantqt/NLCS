@@ -1,0 +1,81 @@
+<html>
+<head>
+  <meta charset="utf-8">
+<title>Tic Tac Toe</title>
+  <link rel="stylesheet" type="text/css" href="style/style-mutiplayer.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Play&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">
+  
+</head>
+  <body>
+    <div id="home">
+        <a href="/">
+          <i class="fas fa-home fa-2x"></i>
+        </a>
+    </div>
+    <div id="background">
+      <div id="title" class="blink-text">
+        <h1>Play Vs Computer</h1>
+      </div>
+    <div id="player">
+      <ul>
+        <li>Player: X</li>
+        <li>Computer: Y</li>
+        <li id="message">Start Game!!!</li>
+      </ul>
+
+  </div>
+  <div id="all">
+      <div id="point">
+          <div class="stylePoint" >
+            <table id="table-point">
+              <tr>
+                <td style="color: white;">X</td>
+                <td style="color: white;" id="point1">0</td>
+              </tr>
+              <tr>
+                <td style="color: white;">O</td>
+                <td style="color: white;" id="point2">0</td>
+              </tr>
+            </table>
+          </div>	
+      </div>
+      <div id="table">
+        <table id="table-color">
+          <tr>
+            <td class="cell" id="0"></td>
+            <td class="cell" id="1"></td>
+            <td class="cell" id="2"></td>
+          </tr>
+          <tr>
+            <td class="cell" id="3"></td>
+            <td class="cell" id="4"></td>
+            <td class="cell" id="5"></td>
+          </tr>
+          <tr>
+            <td class="cell" id="6"></td>
+            <td class="cell" id="7"></td>
+            <td class="cell" id="8"></td>
+          </tr>
+        </table>
+      </div>
+  </div>
+    <div class="endgame">
+      <div class="text">
+        <!--Thong bao-->
+      </div>
+      <button class="btn" onclick="startGame()">REPLAY</button>
+    </div>
+    <div id="restart">
+      <a href="/computer">Restart!</a>
+    </div>  
+  </div>
+ <script src="computer-main.js"></script>
+  
+</body>
+</html>

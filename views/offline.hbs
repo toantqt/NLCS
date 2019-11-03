@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style/style-mutiplayer.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Play&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">
+
+
+	<title>Tic Tac Toe</title>
+</head>
+<body onload="startGame();">
+	<div id="home">
+		<a href="/">
+			<i class="fas fa-home fa-2x"></i>
+		</a>
+	</div>
+<div id="background">
+	<div id="title">
+		<h1>Multiplayer</h1>
+	</div>
+	<div id="player">
+		<ul>
+			<li>Player1: X</li>
+			<li>Player2: Y</li>
+			<li id="message"></li>
+		</ul>
+	</div>
+	<div id="all">
+		<div id="point">
+				<div class="stylePoint" >
+					<table id="table-point">
+						<tr>
+							<td>X</td>
+							<td id="point1">0</td>
+						</tr>
+						<tr>
+							<td>O</td>
+							<td id="point2">0</td>
+						</tr>
+					</table>
+				</div>	
+		</div>
+		<div id="table">
+			<table id="table-color" onload="startGame();">
+				<tr>
+					<td id="s1" onclick="nextMove(this)"></td>
+					<td id="s2" onclick="nextMove(this)"></td>
+					<td id="s3" onclick="nextMove(this)"></td>
+				</tr>
+				<tr>
+					<td id="s4" onclick="nextMove(this)"></td>
+					<td id="s5" onclick="nextMove(this)"></td>
+					<td id="s6" onclick="nextMove(this)"></td>
+				</tr>
+				<tr>
+					<td id="s7" onclick="nextMove(this)"></td>
+					<td id="s8" onclick="nextMove(this)"></td>
+					<td id="s9" onclick="nextMove(this)"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="endgame">
+      <div class="text">
+      	<!--thông báo -->
+      </div>
+	  <button class="btn" onclick="startGame()">REPLAY</button>
+    </div>
+    
+	<div id="restart">
+		<a href="/offline">Restart!</a>
+	</div>
+</div>	
+	<script src="multiplayer-main.js"></script>
+</body>
+</html>
