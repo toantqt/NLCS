@@ -68,26 +68,38 @@ io.on('connection', function (socket) {
         });
     }
 
+    socket.on('client-send-username', (data) => {
+        console.log(data);
+        //server send username
+        socket.emit('server-send-username', data);
+        socket.Username = data;
+
+    });
+
+
     // Listens for a move to be made and emits an event to both
     // players after the move is completed
-    socket.on('make.move', function (data) {
+    socket.on('client-send-move', function (data) {
         if (!getOpponent(socket)) {
             return;
         }
         console.log("Move made by : ", data);
-        socket.emit('move.made', data);
-        getOpponent(socket).emit('move.made', data);
+        socket.emit('server-send-move', data);
+        getOpponent(socket).emit('server-send-move', data);
     });
 
-    // Emit an event to the opponent when the player leaves
-    socket.on('disconnect', function () {
-        if (getOpponent(socket)) {
-            getOpponent(socket).emit('opponent.left');
-        }
+    //event client send message
+    socket.on('client-send-msg', (data) => {
+        console.log('message: '+data);
+        io.sockets.emit('server-send-msg', {
+            name: socket.Username,
+            msg: data
+        });
     });
+
+
+
 });
-
-
 
 app.get('/computer', (req, res) => {
     res.render('computer');

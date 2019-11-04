@@ -2,55 +2,45 @@
 <html>
 
 <head>
-    <link href="styles/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/style/online-style.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="jquery.js"></script>
     <script src="client.js"></script>
-    <style>
-        body {
-    text-align: center;
-}
-
-#symbol {
-    font-size: 2em;
-}
-.board {
-    margin: auto;
-    width: 350px;
-}
-.board button {
-    height: 100px;
-    width: 100px;
-    margin: 0px;
-    padding: 0px;
-    float: left;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    font-size: 3em;
-}
-
-#messages {
-    font-size: 1.9em;
-}
-    </style>
 </head>
 
 <body>
-    Your Symbol: <div id="symbol">waiting...</div>
-    <div class="board">
-        <button class="cell" id="a0"></button>
-        <button class="cell" id="a1"></button>
-        <button class="cell" id="a2"></button>
-        <button class="cell" id="b0"></button>
-        <button class="cell" id="b1"></button>
-        <button class="cell" id="b2"></button>
-        <button class="cell" id="c0"></button>
-        <button class="cell" id="c1"></button>
-        <button class="cell" id="c2"></button>
-
-        <div id="messages">Waiting for opponent to join...</div>
+    <div id="loginForm">
+        <p>Username</p>
+        <input type="text" id="username">
+        <input type="button" value="Login" id="btnRegister">
     </div>
+    <div id="tictactoeForm">
+    <p id="hello"></p> 
+    <div id="symbol">waiting...</div>
+    <div class="board">
+        <button class="cell" id="s0"></button>
+        <button class="cell" id="s1"></button>
+        <button class="cell" id="s2"></button>
+        <button class="cell" id="s3"></button>
+        <button class="cell" id="s4"></button>
+        <button class="cell" id="s5"></button>
+        <button class="cell" id="s6"></button>
+        <button class="cell" id="s7"></button>
+        <button class="cell" id="s8"></button>
 
+        <div id="messages">waiting...</div>
+        <div id="chatForm">
+            <div id="chat">
+                <div id="listMessages">
+                    
+                </div>
+                <input type="text" id="txtMessage">
+                <input type="button" id="btnSendMessage" value="Send">
+            </div>
+        </div>
+    </div>
+   
+</div>
     
 </body>
 

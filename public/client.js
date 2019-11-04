@@ -1,47 +1,41 @@
-var socket = io(),  //io('http://localhost:5000'),
-    myTurn = true, symbol;
+var socket = io()  
+var myTurn = true, symbol;
 
-// One of the rows must be equal to either of these
-// value for
-// the game to be over
-var matches = ['XXX', 'OOO'];
+//xet win 
+var xWin = 'XXX';
+var oWin = 'OOO';
+
 
 
 function getBoardState() {
     var obj = {};
 
-    // We will compose an object of all of the Xs and Ox
-    // that are on the board into an array of cells 
-    // Every cell contains either 'X', 'O' or ''
     $('.cell').each(function () {
         obj[$(this).attr('id')] = $(this).text() || '';
     });
 
-    console.log("state: ", obj);
     return obj;
 }
 
-function isGameOver() {
+function checkWin() {
     var state = getBoardState();
     console.log("Board State: ", state);
 
-    // These are all of the possible combinations
-    // that would win the game
+    //rows luu cac hang, cot , duong cheo
     var rows = [
-        state.a0 + state.a1 + state.a2,
-        state.b0 + state.b1 + state.b2,
-        state.c0 + state.c1 + state.c2,
-        state.a0 + state.b1 + state.c2,
-        state.a2 + state.b1 + state.c0,
-        state.a0 + state.b0 + state.c0,
-        state.a1 + state.b1 + state.c1,
-        state.a2 + state.b2 + state.c2
+        state.s0 + state.s1 + state.s2,
+        state.s3 + state.s4 + state.s5,
+        state.s6 + state.s7 + state.s8,
+        state.s0 + state.s4 + state.s8,
+        state.s2 + state.s4 + state.s6,
+        state.s0 + state.s3 + state.s6,
+        state.s1 + state.s4 + state.s7,
+        state.s2 + state.s5 + state.s8
     ];
 
-    // Loop over all of the rows and check if any of them compare
-    // to either 'XXX' or 'OOO'
+    //kiem cha win
     for (var i = 0; i < rows.length; i++) {
-        if (rows[i] === matches[0] || rows[i] === matches[1]) {
+        if (rows[i] === xWin || rows[i] === oWin) {
             return true;
         }
     }
@@ -49,15 +43,14 @@ function isGameOver() {
 }
 
 function renderTurnMessage() {
-    // Disable the board if it is the opponents turn
+    //disabled bàn cờ nếu đối phương đánh
     if (!myTurn) {
-        $('#messages').text('Your opponent\'s turn');
-        //$('.board button').attr('disabled', true);
+        $('#messages').text('Chờ đối phương');
         $('.cell').attr('disabled', true);
 
-        // Enable the board if it is your turn
+    //enable nếu bạn đánh
     } else {
-        $('#messages').text('Your turn.');
+        $('#messages').text('Đến lượt bạn');
         //$('.board button').removeAttr('disabled');
         $('.cell').removeAttr('disabled');
 
@@ -77,15 +70,26 @@ function makeMove(e) {
     }
 
     // Emit the move to the server
-    socket.emit('make.move', {
+    socket.emit('client-send-move', {
         symbol: symbol,
         position: $(this).attr('id')
     });
 
 }
 
+//Event server-send-username
+socket.on('server-send-username', (data) => {
+    //hien thi khung login
+    $("#loginForm").hide(2000);
+    //an ban co
+    $("#tictactoeForm").show(1000);
+    //hello username
+    $("#hello").html('Hello ' + data);
+});
+
+
 // Event is called when either player makes a move
-socket.on('move.made', function (data) {
+socket.on('server-send-move', function (data) {
     // Render the move, data.position holds the target cell ID
     $('#' + data.position).text(data.symbol);
 
@@ -94,16 +98,16 @@ socket.on('move.made', function (data) {
     myTurn = (data.symbol !== symbol);
 
     // If the game is still going, show who's turn it is
-    if (!isGameOver()) {
+    if (!checkWin()) {
         return renderTurnMessage();
     }
 
-    // If the game is over Show the message for the loser
+    //thong bao end game
     if (myTurn) {
-        $('#messages').text('Game over. You lost.');
+        $('#messages').text('Game over. You lost!!!');
         // Show the message for the winner
     } else {
-        $('#messages').text('Game over. You won!');
+        $('#messages').text('End game. You win!!!');
     }
 
     // Disable the board
@@ -123,15 +127,28 @@ socket.on('game.begin', function (data) {
     renderTurnMessage();
 });
 
-// Disable the board if the opponent leaves
-socket.on('opponent.left', function () {
-    $('#messages').text('Your opponent left the game.');
-    //$('.board button').attr('disabled', true);
-    $('.cell').attr('disabled', true);
+//event server-send-msg
+socket.on('server-send-msg', function(data){
+    $("#listMessages").append("<p id='msg'>" + data.name + ": " + data.msg + "</p>");
 });
 
-$(function () {
+$('document').ready(function(){
+    //hien thi khung login
+    $("#loginForm").show();
+    //an ban co
+    $("#tictactoeForm").hide();
+    
+    //client send username
+    $('#btnRegister').click(function(){
+        socket.emit('client-send-username', $("#username").val());
+    });
+
     $('.board button').attr('disabled', true);
-    //$('.board > button').on('click', makeMove);
     $(".cell").on("click", makeMove);
-});
+
+    //client send message
+    $("#btnSendMessage").click(function(){
+        socket.emit('client-send-msg', $("#txtMessage").val());
+        $("#txtMessage").val('')
+    });
+})
