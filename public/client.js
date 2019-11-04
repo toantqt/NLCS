@@ -151,10 +151,12 @@ socket.on('server-send-move', function (data) {
     }
     //thong bao end game
     if (myTurn) {
-        $('#messages').text('Game over. You lost!!!');
+        $('#messages').text('Game over. You lost!!! ');
+        $('#messages').append("<a href='/Online'>Play again</a>")
         // Show the message for the winner
     } else {
         $('#messages').text('End game. You win!!!');
+        $('#messages').append("<a href='/Online'>Play again</a>")
     }
 
     // Disable the board
@@ -192,7 +194,7 @@ $('document').ready(function(){
 
     $('.board button').attr('disabled', true);
     $(".cell").on("click", makeMove);
-
+ 
     //client send message
     $("#btnSendMessage").click(function(){
         socket.emit('client-send-msg', $("#txtMessage").val());
