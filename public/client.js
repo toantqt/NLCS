@@ -34,13 +34,61 @@ function checkWin() {
     ];
 
     //kiem cha win
-    for (var i = 0; i < rows.length; i++) {
+    for (var i = 0; i <= rows.length; i++) {
         if (rows[i] === xWin || rows[i] === oWin) {
+            if(i==0){
+                $('#s0').css("background-color", "red");
+                $('#s1').css("background-color", "red");
+                $('#s2').css("background-color", "red");
+            }
+            else if(i==1){
+                $('#s3').css("background-color", "red");
+                $('#s4').css("background-color", "red");
+                $('#s5').css("background-color", "red");
+            }
+            else if(i==2){
+                $('#s6').css("background-color", "red");
+                $('#s7').css("background-color", "red");
+                $('#s8').css("background-color", "red");
+            }
+            else if(i==3){
+                $('#s0').css("background-color", "red");
+                $('#s4').css("background-color", "red");
+                $('#s8').css("background-color", "red");
+            }
+            else if(i==4){
+                $('#s2').css("background-color", "red");
+                $('#s4').css("background-color", "red");
+                $('#s6').css("background-color", "red");
+            }
+            else if(i==5){
+                $('#s0').css("background-color", "red");
+                $('#s3').css("background-color", "red");
+                $('#s6').css("background-color", "red");
+            }
+            else if(i==6){
+                $('#s1').css("background-color", "red");
+                $('#s4').css("background-color", "red");
+                $('#s7').css("background-color", "red");
+            }
+            else if(i==7){
+                $('#s2').css("background-color", "red");
+                $('#s5').css("background-color", "red");
+                $('#s8').css("background-color", "red");
+            }
+            else if(i==8){
+                for(i = 0; i < 9; i++){
+                    $('#s'+i).css("background-color", "red");
+                }
+            }
             return true;
         }
     }
     return false;
 }
+
+
+
 
 function renderTurnMessage() {
     //disabled bàn cờ nếu đối phương đánh
@@ -101,7 +149,6 @@ socket.on('server-send-move', function (data) {
     if (!checkWin()) {
         return renderTurnMessage();
     }
-
     //thong bao end game
     if (myTurn) {
         $('#messages').text('Game over. You lost!!!');
