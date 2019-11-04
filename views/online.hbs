@@ -3,14 +3,18 @@
 
 <head>
     <link rel="stylesheet" href="/style/online-style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap" rel="stylesheet">
     <script src="/socket.io/socket.io.js"></script>
     <script src="jquery.js"></script>
     <script src="client.js"></script>
 </head>
 
 <body>
+    {{> icon}}
     <div id="loginForm">
-        <p>Username</p>
+        <p id="title">Tic Tac Toe Online</p>
+        <label>Username:</label>
         <input type="text" id="username">
         <input type="button" value="Login" id="btnRegister">
     </div>
@@ -29,7 +33,9 @@
         <button class="cell" id="s8"></button>
 
         <div id="messages">waiting...</div>
-        <div id="chatForm">
+        
+    </div>
+    <div id="chatForm">
             <div id="chat">
                 <div id="listMessages">
                     
@@ -37,7 +43,6 @@
                 <input type="text" id="txtMessage">
                 <input type="button" id="btnSendMessage" value="Send">
             </div>
-        </div>
     </div>
    
 </div>

@@ -3,13 +3,38 @@ body {
     background-color: #D05A00;
 }
 
+#home{
+    float: left;
+    margin-top: -50px;
+	
+}
+#home a{
+	text-decoration: none;
+	color: black;
+}
+  
+#home a:hover{
+	color: grey;
+}
+
 #loginForm{
-    width: 50%;
+    width: 70%;
     text-align: center;
     margin: auto;
+    
+}
+#title {
+    font-family: 'Bungee Shade', cursive;
+    font-size:65px;
+    color: black;
+  
+}
+
+#loginForm label{
+    font-size: 30px;
 }
 input[type=text], input[type=password] {
-    width: 30%;
+    width: 20%;
     padding: 12px 20px;
     
     display: inline-block;
@@ -67,9 +92,17 @@ input[type=text], input[type=password] {
     text-align: center;
 }
 
+#chatForm{
+    width: 80%;
+   
+    margin: auto;
+    
+}
 #chat{ 
     width: 90%;
     background-color: #d9dbce;
+    margin: auto;
+    
     
 }
 #listMessages{

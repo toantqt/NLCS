@@ -1,11 +1,14 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
+const hbs = require('hbs')
 
 var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
 var port = 9999;
+
+hbs.registerPartials(__dirname + '/views/partial');
 
 app.use(express.static("./public"));
 app.set('view engine', 'hbs');

@@ -76,7 +76,7 @@ function checkWin() {
                 $('#s5').css("background-color", "red");
                 $('#s8').css("background-color", "red");
             }
-            else if(i==8){
+            else{
                 for(i = 0; i < 9; i++){
                     $('#s'+i).css("background-color", "red");
                 }

@@ -6,6 +6,19 @@ body{
 	background-color: #D05A00 ;
 	margin-top: 20px;
 }
+#home{
+	float: left;
+	
+}
+#home a{
+	text-decoration: none;
+	color: black;
+}
+  
+#home a:hover{
+	color: grey;
+}
+  
 
 #background{
 	width: 60%;
