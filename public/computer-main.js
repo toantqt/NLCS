@@ -192,7 +192,7 @@ function minimax(newBoard, player) {
 
 	var bestMove;
 	if(player === computer) {
-		var bestScore = -10000;
+		var bestScore = -1000;
 		for(var i = 0; i < moves.length; i++) {
 			if (moves[i].score > bestScore) {
 				bestScore = moves[i].score;
@@ -200,7 +200,7 @@ function minimax(newBoard, player) {
 			}
 		}
 	} else {
-		var bestScore = 10000;
+		var bestScore = 1000;
 		for(var i = 0; i < moves.length; i++) {
 			if (moves[i].score < bestScore) {
 				bestScore = moves[i].score;

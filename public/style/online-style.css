@@ -3,6 +3,22 @@ body {
     background-color: #D05A00;
 }
 
+#loginForm{
+    margin-top: -10px;
+    width: 40%;
+    background-color: white;
+    height: 600px;
+    margin: auto;
+    text-align: center;
+}
+#form{
+    width: 60%;
+    height: 200px;
+    background-color: #D05A00;
+    margin-top: -50px;
+    margin-left: 20%;
+    padding-top:40px;
+}
 #home{
     float: left;
     margin-top: -50px;
@@ -17,24 +33,31 @@ body {
 	color: grey;
 }
 
-#loginForm{
-    width: 70%;
-    text-align: center;
-    margin: auto;
-    
-}
 #title {
     font-family: 'Bungee Shade', cursive;
     font-size:65px;
     color: black;
   
 }
+.blink-text{
+    color: #000;
+    font-weight: bold;
+    font-size: 2rem;
+    animation: blinkingText 1.5s infinite;
+  }
+  @keyframes blinkingText{
+    0%		{ color: #ef0a1a;}
+    50%		{ color: black;}
+    75%		{ color: #D05A00;}
+    100%		{ color: #ef0a1a;}
+  }
 
-#loginForm label{
+#form p{
     font-size: 30px;
+    color: white;
 }
-input[type=text], input[type=password] {
-    width: 20%;
+input[type=text]{
+    width: 45%;
     padding: 12px 20px;
     
     display: inline-block;
@@ -61,6 +84,7 @@ input[type=text], input[type=password] {
 }
 .board {
     margin: auto;
+    padding-top: 30px;
     width: 350px;
 }
 

@@ -126,14 +126,7 @@ function makeMove(e) {
 
 }
 
-//play again
-socket.on('play-again',function(data){
-    $('.cell').attr('disabled', false);
-    for(i=0;i<9;i++){
-        $('#s'+i).text(data);
-        $('#s'+i).css("background-color", "");
-    }
-});
+
 
 //Event server-send-username
 socket.on('server-send-username', (data) => {
@@ -146,16 +139,34 @@ socket.on('server-send-username', (data) => {
 });
 
 
+//client send 'start-game' server
+socket.on('start-game', function (data) {
+    // The server will asign X or O to the player
+    $("#symbol").html(data.symbol);  // Show the players symbol
+    symbol = data.symbol;
+
+    // Give X the first turn
+    myTurn = (data.symbol === 'X');
+    renderTurnMessage();
+});
+
+//play again
+socket.on('play-again',function(data){
+    $('.cell').attr('disabled', false);
+    for(i=0;i<9;i++){
+        $('#s'+i).text(data);
+        $('#s'+i).css("background-color", "");
+    }
+});
+
 // Event is called when either player makes a move
 socket.on('server-send-move', function (data) {
     // Render the move, data.position holds the target cell ID
     $('#' + data.position).text(data.symbol);
 
-    // If the symbol is the same as the player's symbol,
-    // we can assume it is their turn
     myTurn = (data.symbol !== symbol);
 
-    // If the game is still going, show who's turn it is
+    //check Win
     if (!checkWin()) {
         return renderTurnMessage();
     }
@@ -172,17 +183,7 @@ socket.on('server-send-move', function (data) {
     $('.cell').attr('disabled', true);
 });
 
-// Set up the initial state when the game begins
-// This method is called from the server
-socket.on('start-game', function (data) {
-    // The server will asign X or O to the player
-    $("#symbol").html(data.symbol);  // Show the players symbol
-    symbol = data.symbol;
 
-    // Give X the first turn
-    myTurn = (data.symbol === 'X');
-    renderTurnMessage();
-});
 
 //event server-send-msg
 socket.on('server-send-msg', function(data){

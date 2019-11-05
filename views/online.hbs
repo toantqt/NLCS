@@ -13,17 +13,18 @@
 <body>
     {{> icon}}
     <div id="loginForm">
-        <p id="title">Tic Tac Toe Online</p>
-        <label>Username:</label>
-        <input type="text" id="username">
-        <input type="button" value="Login" id="btnRegister">
+        <p id="title" class="blink-text">Tic Tac Toe</p>
+        <div id="form">
+            <p>Xin mời nhập Username</p>
+            <input type="text" id="username">
+            <input type="button" value="Join Game" id="btnRegister">
+        </div>
     </div>
     <div id="tictactoeForm">
     
     <p id="hello"></p>
     {{> icon}}
     <i id="again" class="fas fa-sync fa-2x"></i>
-    <div id="symbol">waiting...</div>
     <div class="board">
         <button class="cell" id="s0"></button>
         <button class="cell" id="s1"></button>

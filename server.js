@@ -59,7 +59,7 @@ io.on('connection', function (socket) {
             symbol: players[getOpponent(socket).id].symbol
         });
     }
-
+    
     socket.on('reload',() => {
         io.sockets.emit('play-again','');
     })
@@ -69,11 +69,17 @@ io.on('connection', function (socket) {
         socket.emit('server-send-username', data);
         socket.Username = data;
 
+        //send thông báo kết nối
+        io.sockets.emit('server-send-msg',{
+            name: socket.Username,
+            msg: 'Đã kết nối!'
+        });
+
     });
+    
 
 
-    // Listens for a move to be made and emits an event to both
-    // players after the move is completed
+    //lang nge event client-send-move
     socket.on('client-send-move', function (data) {
         if (!getOpponent(socket)) {
             return;
