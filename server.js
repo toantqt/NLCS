@@ -19,25 +19,14 @@ var players = {},
 
 function joinGame(socket) {
 
-    // Add the player to our object of players
+    //them player vao obj
     players[socket.id] = {
-
-        // The opponent will either be the socket that is
-        // currently unmatched, or it will be null if no
-        // players are unmatched
         opponent: unmatched,
-
-        // The symbol will become 'O' if the player is unmatched
         symbol: 'X',
-
-        // The socket that is associated with this player
+        //luu socket cua player
         socket: socket
     };
 
-    // Every other player is marked as 'unmatched', which means
-    // there is no another player to pair them with yet. As soon
-    // as the next socket joins, the unmatched player is paired with
-    // the new socket and the unmatched variable is set back to null
     if (unmatched) {
         players[socket.id].symbol = 'O';
         players[unmatched].opponent = socket.id;
@@ -47,7 +36,7 @@ function joinGame(socket) {
     }
 }
 
-// Returns the opponent socket
+// get socket cua player
 function getOpponent(socket) {
     if (!players[socket.id].opponent) {
         return;
@@ -63,10 +52,10 @@ io.on('connection', function (socket) {
 
     // Once the socket has an opponent, we can begin the game
     if (getOpponent(socket)) {
-        socket.emit('game.begin', {
+        socket.emit('start-game', {
             symbol: players[socket.id].symbol
         });
-        getOpponent(socket).emit('game.begin', {
+        getOpponent(socket).emit('start-game', {
             symbol: players[getOpponent(socket).id].symbol
         });
     }
@@ -89,7 +78,7 @@ io.on('connection', function (socket) {
         if (!getOpponent(socket)) {
             return;
         }
-        console.log("Move made by : ", data);
+        console.log("Move by : ", data);
         socket.emit('server-send-move', data);
         getOpponent(socket).emit('server-send-move', data);
     });

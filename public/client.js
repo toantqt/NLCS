@@ -128,6 +128,7 @@ function makeMove(e) {
 
 //play again
 socket.on('play-again',function(data){
+    $('.cell').attr('disabled', false);
     for(i=0;i<9;i++){
         $('#s'+i).text(data);
         $('#s'+i).css("background-color", "");
@@ -168,12 +169,12 @@ socket.on('server-send-move', function (data) {
 
     // Disable the board
     //$('.board button').attr('disabled', true);
-    $('.cell').attr('disabled', false);
+    $('.cell').attr('disabled', true);
 });
 
 // Set up the initial state when the game begins
 // This method is called from the server
-socket.on('game.begin', function (data) {
+socket.on('start-game', function (data) {
     // The server will asign X or O to the player
     $("#symbol").html(data.symbol);  // Show the players symbol
     symbol = data.symbol;
