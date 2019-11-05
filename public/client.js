@@ -6,7 +6,8 @@ var xWin = 'XXX';
 var oWin = 'OOO';
 
 
-
+//lay index cua ban co
+//luu vao obj
 function getBoardState() {
     var obj = {};
 
@@ -125,6 +126,14 @@ function makeMove(e) {
 
 }
 
+//play again
+socket.on('play-again',function(data){
+    for(i=0;i<9;i++){
+        $('#s'+i).text(data);
+        $('#s'+i).css("background-color", "");
+    }
+});
+
 //Event server-send-username
 socket.on('server-send-username', (data) => {
     //hien thi khung login
@@ -152,16 +161,14 @@ socket.on('server-send-move', function (data) {
     //thong bao end game
     if (myTurn) {
         $('#messages').text('Game over. You lost!!! ');
-        $('#messages').append("<a href='/Online'>Play again</a>")
         // Show the message for the winner
     } else {
         $('#messages').text('End game. You win!!!');
-        $('#messages').append("<a href='/Online'>Play again</a>")
     }
 
     // Disable the board
     //$('.board button').attr('disabled', true);
-    $('.cell').attr('disabled', true);
+    $('.cell').attr('disabled', false);
 });
 
 // Set up the initial state when the game begins
@@ -181,7 +188,7 @@ socket.on('server-send-msg', function(data){
     $("#listMessages").append("<p id='msg'>" + data.name + ": " + data.msg + "</p>");
 });
 
-$('document').ready(function(){
+$(document).ready(function(){
     //hien thi khung login
     $("#loginForm").show();
     //an ban co
@@ -200,4 +207,10 @@ $('document').ready(function(){
         socket.emit('client-send-msg', $("#txtMessage").val());
         $("#txtMessage").val('')
     });
+
+    //play again
+    $("#again").click(function(){
+        socket.emit('reload');
+    });
+    
 })

@@ -49,6 +49,12 @@ input[type=text], input[type=password] {
     margin-top: -7px;
     border: 1px solid black;
 }
+#again{
+    float: right;
+    margin-top: -45px;
+    margin-right: 10px;
+}
+
 #symbol {
     font-size: 2em;
     text-align: center;
@@ -93,13 +99,12 @@ input[type=text], input[type=password] {
 }
 
 #chatForm{
-    width: 80%;
-   
+    width: 100%;
     margin: auto;
     
 }
 #chat{ 
-    width: 90%;
+    width: 80%;
     background-color: #d9dbce;
     margin: auto;
     

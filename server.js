@@ -71,6 +71,9 @@ io.on('connection', function (socket) {
         });
     }
 
+    socket.on('reload',() => {
+        io.sockets.emit('play-again','');
+    })
     socket.on('client-send-username', (data) => {
         console.log(data);
         //server send username
