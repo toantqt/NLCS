@@ -1,4 +1,4 @@
-console.log("hello world");
+console.log("Tran Quoc Toan");
 var point1 = 0;
 var point2 = 0;
 function startGame(){

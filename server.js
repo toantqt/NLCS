@@ -8,9 +8,12 @@ var server = http.createServer(app);
 var io = socketIO(server);
 var port = 9999;
 
+const Route = require('./Routes/route');
+
 hbs.registerPartials(__dirname + '/views/partial');
 
 app.use(express.static("./public"));
+app.use('/', Route);
 app.set('view engine', 'hbs');
 app.set("views", "./views");
 
@@ -77,14 +80,12 @@ io.on('connection', function (socket) {
 
     });
     
-
-
     //lang nge event client-send-move
     socket.on('client-send-move', function (data) {
         if (!getOpponent(socket)) {
             return;
         }
-        console.log("Move by : ", data);
+        console.log("Move: ", data);
         socket.emit('server-send-move', data);
         getOpponent(socket).emit('server-send-move', data);
     });
@@ -97,29 +98,6 @@ io.on('connection', function (socket) {
             msg: data
         });
     });
-
-
-
-});
-
-app.get('/computer', (req, res) => {
-    res.render('computer');
-});
-
-app.get('/multiplayer', (req, res) => {
-    res.render('home-multiplayer')
-})
-
-app.get('/online', (req, res) => {
-    res.render('online');
-});
-
-app.get('/offline', (req, res) => {
-    res.render('offline');
-});
-
-app.get('/', (req, res) => {
-    res.render('home');
 });
 
 server.listen(port, () => {

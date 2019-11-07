@@ -1,11 +1,11 @@
 var socket = io()  
-var myTurn = true, symbol;
+
 
 //xet win 
 var xWin = 'XXX';
 var oWin = 'OOO';
 
-
+var myTurn = true, symbol;
 //lay index cua ban co
 //luu vao obj
 function getBoardState() {
