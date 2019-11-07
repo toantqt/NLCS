@@ -137,6 +137,8 @@ input[type=text]{
 #listMessages{
     height: 180px;
     background-color:white ;
+    overflow: scroll;
+    box-shadow: 0px 1px 1px #000;
 }
 #txtMessage{
     
@@ -152,4 +154,9 @@ input[type="text"]:focus {
 
 #msg{
     margin-left: 1px;
+}
+
+#btnSendMessage{
+    width: 10%;
+    height: 25px;
 }
