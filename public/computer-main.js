@@ -101,7 +101,7 @@ function gameOver(gameWin){
     {
     	square[i].removeEventListener('click', nextMove, false);
     }
-    winner(gameWin.player == human ? "You Win" : "You Lose");
+    winner(gameWin.player == human ? "You Win" : "Player Lose");
 }
 
 //function winner()
@@ -128,7 +128,7 @@ function checkTie(){
 			square[i].removeEventListener('click',nextMove, false);
 		}
 
-		winner("Tie Game!")
+		winner("Tie Game!!!");
 		return true;
 	}
 	return false;
