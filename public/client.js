@@ -135,7 +135,7 @@ socket.on('server-send-username', (data) => {
     //an ban co
     $("#tictactoeForm").show(1000);
     //hello username
-    $("#hello").html('Hello ' + data);
+    $("#hello").html('Hello ' + '<label id="user">'+ data +'</label>');
 });
 
 

@@ -72,6 +72,9 @@ input[type=text]{
     margin-top: -7px;
     border: 1px solid black;
 }
+#user{
+    color: white;
+}
 #again{
     float: right;
     margin-top: -45px;
@@ -97,7 +100,7 @@ input[type=text]{
 	display:inline-block;
 	cursor:pointer;
 	color: black;
-	font-family:Arial;
+	font-family: 'Baloo', cursive;
 	text-decoration:none;
     text-shadow:0px 1px 0px #854629;
     height: 100px;
@@ -106,7 +109,7 @@ input[type=text]{
     padding: 0px;
     margin-right: 10px;
     margin-bottom: 10px;
-    font-size: 3em;
+    font-size: 4em;
     float: left;
 }
 .cell:hover {
