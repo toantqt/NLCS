@@ -98,6 +98,15 @@ io.on('connection', function (socket) {
             msg: data
         });
     });
+
+    //disconnect
+    socket.on('disconnect', () => {
+        console.log('User disconnect: ' +socket.id);
+        socket.broadcast.emit('server-send-msg', {
+            name: socket.Username,
+            msg: 'Đã thoát khỏi trò chơi!!!'
+        });
+    });
 });
 
 server.listen(port, () => {
