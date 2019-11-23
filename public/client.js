@@ -183,7 +183,7 @@ socket.on('server-send-move', function (data) {
 
 //event server-send-msg
 socket.on('server-send-msg', function(data){
-    $("#listMessages").append("<p id='msg'>" + data.name + ": " + data.msg + "</p>");
+    $("#listMessages").append("<p id='msg'>" + data.name + ": " + "<label id='contentMsg'>" + data.msg + "</label>" + "</p>");
 });
 
 $(document).ready(function(){

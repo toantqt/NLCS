@@ -158,6 +158,11 @@ input[type="text"]:focus {
 
 #msg{
     margin-left: 1px;
+    color: #D05A00;
+    
+}
+#contentMsg{
+    color: black;
 }
 
 #btnSendMessage{
