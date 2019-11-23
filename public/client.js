@@ -107,13 +107,11 @@ function renderTurnMessage() {
 }
 
 function makeMove(e) {
-    e.preventDefault();
-    // It's not your turn
     if (!myTurn) {
         return;
     }
 
-    // The space is already checked
+    //check khoang trong
     if ($(this).text().length) {
         return;
     }
@@ -121,6 +119,7 @@ function makeMove(e) {
     // Emit the move to the server
     socket.emit('client-send-move', {
         symbol: symbol,
+        //get value id
         position: $(this).attr('id')
     });
 
@@ -141,10 +140,7 @@ socket.on('server-send-username', (data) => {
 
 //client send 'start-game' server
 socket.on('start-game', function (data) {
-    // The server will asign X or O to the player
-    $("#symbol").html(data.symbol);  // Show the players symbol
     symbol = data.symbol;
-
     // Give X the first turn
     myTurn = (data.symbol === 'X');
     renderTurnMessage();
