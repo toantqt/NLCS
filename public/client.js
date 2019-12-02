@@ -155,7 +155,7 @@ socket.on('play-again',function(data){
     }
 });
 
-// Event is called when either player makes a move
+
 socket.on('server-send-move', function (data) {
     // Render the move, data.position holds the target cell ID
     $('#' + data.position).text(data.symbol);
@@ -175,7 +175,6 @@ socket.on('server-send-move', function (data) {
     }
 
     // Disable the board
-    //$('.board button').attr('disabled', true);
     $('.cell').attr('disabled', true);
 });
 
